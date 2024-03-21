@@ -1,0 +1,20 @@
+{
+  "title": "BLOG",
+
+  "description": "Viverra tristique placerat massa est consectetur quisque nu fames lorem",
+
+  "posts": [
+    {
+      "to": "/single-blog",
+      "title": "The carbon in our apple pies vanquis",
+      "date": "MAR 25, 2021",
+      "category": "BRANDING"
+    },
+    {
+      "to": "/single-blog",
+      "title": "Perga white dwarf tesseract worldlets",
+      "date": "FEB 2, 2021",
+      "category": "ART"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "EXPERIENCE",
+
+  "description": "Lorem ipsum dolor sit amet consectetu adipiscing elit viverra tristique placerat",
+  "paragraphe": "Viverra tristique placerat in sat massa consectetur quisque. Nunc aces fames lectus in libero aliquet ertare feraso est lorem nunc dolor sit amet settera aces volutpat in voltare lupar est phasellus. Faucibus sed tristique fames sed aliquet ultricies eget viverra arcu.",
+
+  "experienceHistory": [
+    {
+      "date": "2021 - Present",
+      "description": "**Director's Assistant** - Jonathan Dayton & Valerie Faris"
+    },
+    {
+      "date": "2020 - 2021",
+      "description": "**Executive Assistant / Social Media Manager** - Rachel Krupa"
+    },
+    {
+      "date": "2018 - 2020",
+      "description": "**Production Coordinator** - Rotten Science"
+    },
+    {
+      "date": "2016 - 2018",
+      "description": "**Executive Assistant** - John Davis"
+    }
+    ,
+    {
+      "date": "2014 - 2015",
+      "description": "**Executive Assistant** - Elaine Goldsmith-Thomass"
+    }
+  ],
+
+  "experienceProgress": [
+    {
+      "name": "Skill 1",
+      "percentage": 55
+    },
+    {
+      "name": "Skill 2",
+      "percentage": 68
+    },
+    {
+      "name": "Skill 3",
+      "percentage": 80
+    },
+    {
+      "name": "Skill 4",
+      "percentage": 43
+    },
+    {
+      "name": "Skill 5",
+      "percentage": 55
+    },
+    {
+      "name": "Skill 6",
+      "percentage": 68
+    },
+    {
+      "name": "Skill 7",
+      "percentage": 80
+    },
+    {
+      "name": "Skill 8",
+      "percentage": 43
+    }
+  ]
+}

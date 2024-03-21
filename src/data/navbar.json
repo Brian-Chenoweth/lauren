@@ -1,0 +1,51 @@
+{
+  "homeLink": {
+    "to": "/",
+    "text": "LAUREN SCHONEMAN"
+  },
+
+  "navLinks": [
+    {
+      "to": "home",
+      "text": "Home"
+    },
+    {
+      "to": "services",
+      "text": "Services"
+    },
+    {
+      "to": "about",
+      "text": "About"
+    },
+    {
+      "to": "portfolio",
+      "text": "Portfolio"
+    },
+    {
+      "to": "blog",
+      "text": "Blog"
+    },
+    {
+      "to": "experience",
+      "text": "Experience"
+    },
+    {
+      "to": "contact",
+      "text": "Contact"
+    }
+  ],
+  "footLinks": [
+    {
+      "to": "#",
+      "text": "IN."
+    },
+    {
+      "to": "#",
+      "text": "FB."
+    },
+    {
+      "to": "#",
+      "text": "LI."
+    }
+  ]
+}
