@@ -126,7 +126,6 @@ function Contact() {
                 type="text"
                 name="your-name"
                 placeholder="NAME"
-                pattern="(?!.^\s$)[A-Za-z]{3,}"
                 required
                 value={formData['your-name']}
                 onChange={handleDataChange}
@@ -138,7 +137,6 @@ function Contact() {
                 type="email"
                 name="your-email"
                 placeholder="EMAIL"
-                pattern="(?=.*[a-zA-Z])[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}"
                 required
                 value={formData['your-email']}
                 onChange={handleDataChange}
@@ -150,7 +148,6 @@ function Contact() {
                 type="text"
                 name="your-subject"
                 placeholder="SUBJECT"
-                pattern="(?!.^\s$)[A-Za-z]{3,}"
                 required
                 value={formData['your-subject']}
                 onChange={handleDataChange}
