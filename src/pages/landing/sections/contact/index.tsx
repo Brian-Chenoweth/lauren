@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 // Images
 import palmTrees from '../../../../assets/images/contact/la-palm-trees.jpg';
@@ -14,26 +15,89 @@ import contactData from '../../../../data/contact.json';
 
 // ----------------
 
-interface FormDataType {
+type formDataType = {
   'your-name': string;
   'your-email': string;
   'your-subject': string;
   'your-message': string;
-}
-
-const initialFormData: FormDataType = {
+};
+const initialFormData = {
   'your-name': '',
   'your-email': '',
   'your-subject': '',
   'your-message': '',
 };
 
-function Contact() {
-  const [formData, setFormData] = useState<FormDataType>(initialFormData);
+// to handle sending form message
+type serverStateType = {
+  submitting: boolean;
+  status?: {
+    ok: boolean;
+    msg: string;
+  } | null;
+};
 
-  const handleDataChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+function Contact() {
+  const [formData, setFormData] = useState<formDataType>(initialFormData);
+  const [serverState, setServerState] = useState<serverStateType>({
+    submitting: false,
+    status: null,
+  });
+
+  /**
+   * Change {formData} variable when user input data
+   *
+   * @param e change event in form inputs
+   */
+  const handleDataChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  /**
+   * Handle the http request we sent to send our message (that user wrote)
+   * and give message to the user to know what happened, is the message sent or not.
+   *
+   * @param ok if message has been sent or not
+   * @param msg the message to be shown to the user
+   */
+  const handleServerResponse = (ok: boolean, msg: string) => {
+    setServerState({
+      submitting: false,
+      status: { ok, msg },
+    });
+    if (ok) {
+      setFormData(initialFormData);
+    }
+    setTimeout(() => {
+      setServerState((prev: serverStateType) => ({ ...prev, status: null }));
+    }, 3000);
+  };
+
+  /**
+   * Submitting message when user clock send button
+   *
+   * @param e form submit event
+   */
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Submitting Form
+    setServerState({ submitting: true });
+    axios({
+      method: 'post',
+      url: contactData.formspreeEndpoint,
+      data: formData,
+    })
+      .then((r) => {
+        handleServerResponse(true, 'Thank you! I will get back to you soon.');
+      })
+      .catch((r) => {
+        handleServerResponse(false, 'Error occuars while sending');
+      });
   };
 
   return (
@@ -41,15 +105,21 @@ function Contact() {
       <h2 className="title">{contactData.title}</h2>
       <div className="section-des">{contactData.description}</div>
       <div className="content-670">
-        <p dangerouslySetInnerHTML={{ __html: markdownToHTML(contactData.paragrapge) }}></p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: markdownToHTML(contactData.paragrapge),
+          }}></p>
       </div>
 
-      <img className="block-right" src={palmTrees} alt="Los Angeles palm trees" />
+      {/* <a
+        href="https://www.google.com/maps/place/Central+Park/@40.7828647,-73.9653551,15z/data=!4m5!3m4!1s0x0:0xb9df1f7387a94119!8m2!3d40.7828647!4d-73.9653551"
+        target="_blank"> */}
+        <img className="block-right" src={palmTrees} alt="Los Angeles palm trees" />
+      {/* </a> */}
 
       <div className="content-670">
         <div className="contact-form">
-          <form name="contact" method="post" data-netlify="true" onSubmit={(e) => e.preventDefault()}>
-            <input type="hidden" name="form-name" value="contact" />
+          <form action="#" method="post" onSubmit={handleSubmit}>
             <p>
               <input
                 id="name"
@@ -95,6 +165,16 @@ function Contact() {
             <p className="contact-submit-holder">
               <input type="submit" value="SEND" />
             </p>
+
+            {(serverState.submitting || serverState.status?.msg) && (
+              <p className="respond-message">
+                {serverState.submitting
+                  ? 'Sending message'
+                  : serverState.status
+                  ? serverState.status?.msg
+                  : ''}
+              </p>
+            )}
           </form>
         </div>
       </div>
