@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp ./_redirects ./dist/_redirects",
+    "build": "tsc && vite build && cp ./netlify.toml ./dist/netlify.toml",
     "preview": "vite preview"
   },
   "dependencies": {
