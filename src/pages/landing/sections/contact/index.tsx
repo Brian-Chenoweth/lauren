@@ -47,7 +47,7 @@ function Contact() {
 
       <div className="content-670">
         <div className="contact-form">
-          <form name="contact" method="post" action="#" data-netlify="true" onSubmit={(e) => e.preventDefault()}>
+          <form name="contact" method="post" data-netlify="true" onSubmit={(e) => e.preventDefault()}>
             <input type="hidden" name="form-name" value="contact" />
             <p>
               <input
