@@ -30,36 +30,36 @@
 
   "experienceProgress": [
     {
-      "name": "Skill 1",
-      "percentage": 55
+      "name": "Production Coordination",
+      "percentage": 90
     },
     {
-      "name": "Skill 2",
-      "percentage": 68
+      "name": "Executive Assistance",
+      "percentage": 93
     },
     {
-      "name": "Skill 3",
-      "percentage": 80
+      "name": "Social Media Management",
+      "percentage": 84
     },
     {
-      "name": "Skill 4",
-      "percentage": 43
+      "name": "Script Analysis",
+      "percentage": 94
     },
     {
-      "name": "Skill 5",
-      "percentage": 55
+      "name": "Project Management",
+      "percentage": 86
     },
     {
-      "name": "Skill 6",
-      "percentage": 68
+      "name": "Video Production",
+      "percentage": 94
     },
     {
-      "name": "Skill 7",
-      "percentage": 80
+      "name": "Video Editing",
+      "percentage": 91
     },
     {
-      "name": "Skill 8",
-      "percentage": 43
+      "name": "Research Skills",
+      "percentage": 86
     }
   ]
 }
