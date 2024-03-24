@@ -27,7 +27,7 @@ version 1.1
 ====================================== */
 
 .section-des {
-  /* max-width: 440px; */
+  max-width: 95%;
   font-size: 21px;
   line-height: 1.65;
 }
