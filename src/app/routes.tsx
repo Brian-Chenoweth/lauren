@@ -1,6 +1,5 @@
 // Pages and Components
 import Landing from '../pages/landing';
-import BlogSingle from '../pages/blog/single-blog';
 import Navbar from '../components/Navbar';
 
 // ------------------
@@ -39,10 +38,6 @@ const routes: RoutesType[] = [
   {
     path: '/',
     element: renderWithNav(<Landing />, true),
-  },
-  {
-    path: '/single-blog',
-    element: renderWithNav(<BlogSingle />, false),
   },
 ];
 

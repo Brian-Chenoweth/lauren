@@ -1,5 +1,4 @@
 // Sections
-import Blog from './sections/blog';
 import About from './sections/about';
 import Contact from './sections/contact';
 import HomeSection from './sections/home';
@@ -16,7 +15,6 @@ function Home() {
       <Services />
       <About />
       <Portfolio />
-      <Blog />
       <Experience />
       <Contact />
     </>
