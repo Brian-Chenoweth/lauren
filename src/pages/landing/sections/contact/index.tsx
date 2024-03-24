@@ -94,7 +94,7 @@ function Contact() {
 
       <div className="content-670">
         <div className="contact-form">
-        <form name="contact" method="post" onSubmit={handleSubmit} data-netlify="true">
+        <form name="contact" method="POST" data-netlify="true">
             <p>
               <input
                 id="name"
