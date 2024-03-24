@@ -14,12 +14,12 @@ import contactData from '../../../../data/contact.json';
 
 // ----------------
 
-type FormDataType = {
+interface FormDataType {
   'your-name': string;
   'your-email': string;
   'your-subject': string;
   'your-message': string;
-};
+}
 
 const initialFormData: FormDataType = {
   'your-name': '',
@@ -31,8 +31,9 @@ const initialFormData: FormDataType = {
 function Contact() {
   const [formData, setFormData] = useState<FormDataType>(initialFormData);
 
-  const handleDataChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleDataChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
