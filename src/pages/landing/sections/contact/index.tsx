@@ -13,23 +13,23 @@ import { markdownToHTML } from '../../../../utils/converter';
 // Data
 import contactData from '../../../../data/contact.json';
 
-// Define form data types
-type FormDataType = {
+// ----------------
+
+type formDataType = {
   'your-name': string;
   'your-email': string;
   'your-subject': string;
   'your-message': string;
 };
-
-const initialFormData: FormDataType = {
+const initialFormData = {
   'your-name': '',
   'your-email': '',
   'your-subject': '',
   'your-message': '',
 };
 
-// Define server state types
-type ServerStateType = {
+// to handle sending form message
+type serverStateType = {
   submitting: boolean;
   status?: {
     ok: boolean;
@@ -38,20 +38,32 @@ type ServerStateType = {
 };
 
 function Contact() {
-  const [formData, setFormData] = useState<FormDataType>(initialFormData);
-  const [serverState, setServerState] = useState<ServerStateType>({
+  const [formData, setFormData] = useState<formDataType>(initialFormData);
+  const [serverState, setServerState] = useState<serverStateType>({
     submitting: false,
     status: null,
   });
 
-  // Function to handle input change
+  /**
+   * Change {formData} variable when user input data
+   *
+   * @param e change event in form inputs
+   */
   const handleDataChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // Function to handle server response
+  /**
+   * Handle the http request we sent to send our message (that user wrote)
+   * and give message to the user to know what happened, is the message sent or not.
+   *
+   * @param ok if message has been sent or not
+   * @param msg the message to be shown to the user
+   */
   const handleServerResponse = (ok: boolean, msg: string) => {
     setServerState({
       submitting: false,
@@ -61,21 +73,31 @@ function Contact() {
       setFormData(initialFormData);
     }
     setTimeout(() => {
-      setServerState((prev) => ({ ...prev, status: null }));
+      setServerState((prev: serverStateType) => ({ ...prev, status: null }));
     }, 3000);
   };
 
-  // Function to handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  /**
+   * Submitting message when user clock send button
+   *
+   * @param e form submit event
+   */
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setServerState({ submitting: true });
 
-    try {
-      const response = await axios.post(contactData.formspreeEndpoint, formData);
-      handleServerResponse(true, 'Thank you! I will get back to you soon.');
-    } catch (error) {
-      handleServerResponse(false, 'Error occurred while sending');
-    }
+    // Submitting Form
+    setServerState({ submitting: true });
+    axios({
+      method: 'post',
+      url: contactData.formspreeEndpoint,
+      data: formData,
+    })
+      .then((r) => {
+        handleServerResponse(true, 'Thank you! I will get back to you soon.');
+      })
+      .catch((r) => {
+        handleServerResponse(false, 'Error occuars while sending');
+      });
   };
 
   return (
@@ -86,15 +108,18 @@ function Contact() {
         <p
           dangerouslySetInnerHTML={{
             __html: markdownToHTML(contactData.paragrapge),
-          }}
-        ></p>
+          }}></p>
       </div>
 
-      <img className="block-right" src={palmTrees} alt="Los Angeles palm trees" />
+      {/* <a
+        href="https://www.google.com/maps/place/Central+Park/@40.7828647,-73.9653551,15z/data=!4m5!3m4!1s0x0:0xb9df1f7387a94119!8m2!3d40.7828647!4d-73.9653551"
+        target="_blank"> */}
+        <img className="block-right" src={palmTrees} alt="Los Angeles palm trees" />
+      {/* </a> */}
 
       <div className="content-670">
         <div className="contact-form">
-        <form name="contact" method="POST" data-netlify="true">
+          <form action="#" method="post" onSubmit={handleSubmit}>
             <p>
               <input
                 id="name"
@@ -135,8 +160,7 @@ function Contact() {
                 placeholder="MESSAGE"
                 required
                 value={formData['your-message']}
-                onChange={handleDataChange}
-              ></textarea>
+                onChange={handleDataChange}></textarea>
             </p>
             <p className="contact-submit-holder">
               <input type="submit" value="SEND" />
